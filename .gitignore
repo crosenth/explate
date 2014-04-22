@@ -1,0 +1,10 @@
+output
+*env
+.sconsign.dblite
+*.pyc
+*.egg-info
+*.bz2
+*.pdf
+settings.conf
+.org-export
+*.html
