@@ -8,7 +8,7 @@ else
     venv=$1
 fi
 
-MISEQ_PIPELINE_DIR=$(cd $(dirname $BASH_SOURCE) && cd .. && pwd)
+MAIN_DIR=$(cd $(dirname $BASH_SOURCE) && cd .. && pwd)
 
 # create virtualenv if necessary
 if [ ! -f $venv/bin/activate ]; then
@@ -19,6 +19,6 @@ fi
 
 source $venv/bin/activate
 
-cd ${MISEQ_PIPELINE_DIR}
+cd ${MAIN_DIR}
 
 pip install --requirement requirements.txt
