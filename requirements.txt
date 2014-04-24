@@ -1,2 +1,2 @@
-git+https://github.com/nhoffman/bioy.git@v1.7.6#egg=bioy
+-e git+https://github.com/nhoffman/bioy.git
 .

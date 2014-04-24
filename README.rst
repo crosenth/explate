@@ -1,5 +1,5 @@
 ============================================
-explate: an experiment and analysis template
+explate: an EXperiment and analysis temPLATE
 ============================================
 
 Explate 
