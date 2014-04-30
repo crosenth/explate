@@ -8,3 +8,4 @@ output
 settings.conf
 .org-export
 *.html
+*.time
