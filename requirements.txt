@@ -1,2 +1,2 @@
--e git+https://github.com/nhoffman/bioy.git
-.
+-e git+https://github.com/nhoffman/bioy.git#egg=bioy
+bioscons

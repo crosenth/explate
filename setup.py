@@ -12,5 +12,7 @@ setup(name = '',
       author_email = '',
       packages = find_packages(),
       description = '',
-      version = version)
+      version = version,
+      install_requires = ['bioscons']
+      )
 

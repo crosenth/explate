@@ -6,8 +6,9 @@ import sys
 
 from os import path
 from ConfigParser import SafeConfigParser
+from SCons.Script import (Decider, Variables, Help, Alias)
 
-from SCons.Script import (Decider, Variables, Environment, Help, Alias)
+from bioscons.slurm import SlurmEnvironment
 
 Decider('MD5-timestamp')
 
@@ -31,11 +32,6 @@ vars = Variables()
 for k,v in _params.defaults().items():
     vars.Add(k, default=v)
 
-# time stamp feature
-vars.Add('time',
-         'system path to the time function',
-         '/usr/bin/time --verbose --output ${TARGETS[0]}.time')
-
 ### PATH and Environment (preference given to local venv executables)
 PATH = [
     path.join(venv, 'bin'),
@@ -48,10 +44,12 @@ scons_env = dict(os.environ,
         PATH=':'.join(PATH),
         THREADS_ALLOC=_params.defaults().get('nproc', 1))
 
-env = Environment(
+env = SlurmEnvironment(
     ENV = scons_env,
     variables = vars,
-    SHELL = 'bash'
+    SHELL = 'bash',
+    use_cluster = False,
+    time = True
 )
 
 Help(vars.GenerateHelpText(env))
@@ -64,7 +62,8 @@ report = env.Command(
               '--script bin/org2html.el '
               '-package-dir ./.org-export '
               '-infile $SOURCE '
-              '-outfile $TARGET')
+              '-outfile $TARGET'),
+    time = False
     )
 Alias('report', report)
 ###
@@ -73,6 +72,6 @@ Alias('report', report)
 env.Command(
     target = '',
     source = '',
-    action = ('')
+    action = (''),
     )
 
